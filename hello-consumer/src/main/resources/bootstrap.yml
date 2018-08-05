@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: hello-consumer
+eureka:
+  instance:
+    metadata-map:
+      route: hello
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8762/eureka
+

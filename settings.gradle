@@ -1,0 +1,5 @@
+rootProject.name = 'spring-cloud-demo'
+include 'zuul-server'
+include 'eureka-server'
+include 'hello-consumer'
+

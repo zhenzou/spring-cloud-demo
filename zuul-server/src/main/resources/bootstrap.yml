@@ -1,0 +1,13 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: demo-zuul-server
+eureka:
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka
+
