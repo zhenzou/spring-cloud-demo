@@ -1,1 +1,7 @@
 description 'eureka-server'
+
+
+
+dependencies{
+    compile('org.springframework.boot:spring-boot-starter-security')
+}
