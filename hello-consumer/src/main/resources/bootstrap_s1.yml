@@ -1,12 +1,16 @@
 server:
-  port: 8762
+  port: 8080
 spring:
   application:
-    name: demo-eureka-server
+    name: hello-consumer
 eureka:
+  instance:
+    metadata-map:
+      route: hello
   client:
     enabled: true
     fetch-registry: true
     register-with-eureka: true
     service-url:
       defaultZone: http://september:demo@localhost:8761/eureka,http://september:demo@localhost:8762/eureka,http://september:demo@localhost:8763/eureka
+
