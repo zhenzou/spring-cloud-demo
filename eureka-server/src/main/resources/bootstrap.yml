@@ -10,3 +10,13 @@ eureka:
     register-with-eureka: false
     service-url:
       defaultZone: http://september:demo@localhost:8761/eureka
+
+
+logging:
+  file: logs/eureka.log
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

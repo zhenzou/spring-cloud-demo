@@ -1,8 +1,8 @@
 server:
-  port: 9000
+  port: 8888
 spring:
   application:
-    name: demo-zuul-server
+    name: service-admin-server
 eureka:
   client:
     enabled: true
@@ -11,14 +11,11 @@ eureka:
     service-url:
       defaultZone: http://september:demo@localhost:8761/eureka
 
-zuul:
-  ignored-services: '*'
-
-logging:
-  file: logs/zuul.log
-
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*"  #<2>
+  endpoint:
+    health:
+      show-details: ALWAYS

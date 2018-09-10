@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.zuul.filters.discovery.ServiceRouteMapp
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @author september zzzhen1994@gmail.com
  */
 @Slf4j
-public class CustomServiceRouteMapper implements ServiceRouteMapper {
+public class DynamicServiceRouteMapper implements ServiceRouteMapper {
 
     /**
      * 在metadata中配置服务路由的key
@@ -35,20 +35,18 @@ public class CustomServiceRouteMapper implements ServiceRouteMapper {
 
     private DiscoveryClient discovery;
 
-    private Map<String, String> routes = new ConcurrentHashMap<>();
+    private Map<String, String> routes = new HashMap<>();
 
-    private ZuulProperties properties;
-
-    public CustomServiceRouteMapper(DiscoveryClient discovery, ZuulProperties properties) {
+    public DynamicServiceRouteMapper(DiscoveryClient discovery) {
         this.discovery = discovery;
-        this.properties = properties;
         executor.scheduleAtFixedRate(this::loadRoutes, 0, 1, TimeUnit.MINUTES);
     }
 
     private void loadRoutes() {
         log.info("LOAD ROUTERS START");
         List<String> services = discovery.getServices();
-        final Map<String, String> routes = new ConcurrentHashMap<>(services.size());
+        final Map<String, String> routesMap = new HashMap<>(services.size());
+
         services.forEach(server -> {
             List<ServiceInstance> instances = discovery.getInstances(server);
             if (CollectionUtils.isEmpty(instances)) {
@@ -59,11 +57,10 @@ public class CustomServiceRouteMapper implements ServiceRouteMapper {
             if (StringUtils.isEmpty(path)) {
                 return;
             }
-            this.properties.getRoutes().put(path, new ZuulProperties.ZuulRoute("/" + path + "/**", server));
             log.info("LOAD ROUTER {} => {}", path, server);
-            routes.put(server, path);
+            routesMap.put(server, path);
         });
-        this.routes = routes;
+        this.routes = routesMap;
         log.info("LOAD ROUTERS END");
     }
 

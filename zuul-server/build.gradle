@@ -1,1 +1,5 @@
 description 'zuul-server'
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-netflix-zuul')
+}
