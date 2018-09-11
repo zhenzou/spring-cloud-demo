@@ -36,7 +36,9 @@ configure(allprojects, { project ->
         mavenCentral()
         mavenLocal()
     }
-
+    bootRun {
+        systemProperties = System.properties
+    }
     dependencies {
         compile('org.springframework.boot:spring-boot-starter-actuator')
         compile('org.springframework.boot:spring-boot-starter-data-rest')
@@ -52,7 +54,7 @@ configure(allprojects, { project ->
         runtime('org.springframework.boot:spring-boot-devtools')
         compileOnly('org.springframework.boot:spring-boot-configuration-processor')
         compileOnly('org.projectlombok:lombok')
-        testCompile ('junit:junit:4.12')
+        testCompile('junit:junit:4.12')
         testCompile('org.springframework.boot:spring-boot-starter-test')
     }
 })

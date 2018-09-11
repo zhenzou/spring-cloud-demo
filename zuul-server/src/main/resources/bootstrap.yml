@@ -13,6 +13,8 @@ eureka:
 
 zuul:
   ignored-services: '*'
+  retryable: true
+
 
 logging:
   file: logs/zuul.log
@@ -22,3 +24,18 @@ management:
     web:
       exposure:
         include: "*"
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+# 这个配置是大小写敏感的
+ribbon:
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: true
+  ConnectTimeout: 1000
+  ReadTimeout: 2000

@@ -1,0 +1,18 @@
+#测试zuul retry
+server:
+  port: 8081
+spring:
+  application:
+    name: hello-consumer
+eureka:
+  instance:
+    metadata-map:
+      route: hello
+  client:
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://september:demo@localhost:8761/eureka/
+
+
