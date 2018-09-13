@@ -44,4 +44,5 @@ public class DynamicRouterConfiguration {
         return new SimpleDynamicRouteLocator(this.server.getServlet().getServletPrefix(), this.discovery, this.properties,
                 this.serviceRouteMapper, this.registration);
     }
+
 }
