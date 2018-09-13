@@ -24,14 +24,11 @@ import org.springframework.context.annotation.Configuration;
 public class DynamicRouterConfiguration {
 
     @Autowired
+    protected ServerProperties server;
+    @Autowired
     private DiscoveryClient discovery;
-
     @Autowired
     private ZuulProperties properties;
-
-    @Autowired
-    protected ServerProperties server;
-
     @Autowired(required = false)
     private Registration registration;
 

@@ -15,7 +15,7 @@ ext {
     springCloudVersion = 'Finchley.SR1'
 }
 
-configure(subprojects , { project ->
+configure(subprojects, { project ->
     apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'org.springframework.boot'
