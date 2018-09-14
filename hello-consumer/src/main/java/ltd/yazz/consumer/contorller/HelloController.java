@@ -24,6 +24,7 @@ public class HelloController {
 
     /**
      * 测试post超时不重试
+     *
      * @param name
      * @return
      */
@@ -41,8 +42,8 @@ public class HelloController {
     }
 
     /**
-     *
      * 测试只有在connection refused 的时候才重试
+     *
      * @param name
      * @return
      */

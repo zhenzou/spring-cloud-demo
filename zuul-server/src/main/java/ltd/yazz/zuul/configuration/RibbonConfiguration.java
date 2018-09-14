@@ -23,7 +23,9 @@ public class RibbonConfiguration {
             public LoadBalancedRetryPolicy createRetryPolicy(String service, ServiceInstanceChooser serviceInstanceChooser) {
                 RibbonLoadBalancerContext lbContext = factory
                         .getLoadBalancerContext(service);
-                return new ConnectionRefusedRetryPolicy(service, lbContext, serviceInstanceChooser, factory.getClientConfig(service));
+                return new ConnectionRefusedRetryPolicy(service, lbContext, serviceInstanceChooser,
+                        factory.getClientConfig(service),
+                        true, false);
             }
         };
     }

@@ -16,24 +16,34 @@ import java.net.ConnectException;
 @Slf4j
 public class ConnectionRefusedRetryPolicy extends RibbonLoadBalancedRetryPolicy {
 
-    private final boolean okToRetryOnConnectErrors = true;
-    private final boolean okToRetryOnAllErrors = false;
+    private final boolean okToRetryOnConnectErrors;
+    private final boolean okToRetryOnAllError;
 
-    public ConnectionRefusedRetryPolicy(String serviceId, RibbonLoadBalancerContext context, ServiceInstanceChooser loadBalanceChooser, IClientConfig clientConfig) {
+    public ConnectionRefusedRetryPolicy(String serviceId,
+                                        RibbonLoadBalancerContext context,
+                                        ServiceInstanceChooser loadBalanceChooser,
+                                        IClientConfig clientConfig,
+                                        boolean okToRetryOnConnectErrors,
+                                        boolean okToRetryOnAllError) {
+
         super(serviceId, context, loadBalanceChooser, clientConfig);
+        this.okToRetryOnConnectErrors = okToRetryOnConnectErrors;
+        this.okToRetryOnAllError = okToRetryOnAllError;
     }
 
 
     @Override
     public boolean canRetry(LoadBalancedRetryContext context) {
-        return super.canRetry(context) || isRetryException(context.getLastThrowable());
+        return super.canRetry(context) || isRetryableException(context.getLastThrowable());
     }
 
-    public boolean isRetryException(Throwable t) {
-        log.info("retry:{}",t.getClass().getName());
-        if (okToRetryOnConnectErrors) {
-            return t instanceof ConnectException;
+    private boolean isRetryableException(Throwable t) {
+        boolean retryable = okToRetryOnAllError || (okToRetryOnConnectErrors && t instanceof ConnectException);
+        if (retryable) {
+            log.info("retry:{}", t.getClass().getName());
+            return true;
         }
+        log.info("do not retry:{}", t.getClass().getName());
         return false;
 
     }

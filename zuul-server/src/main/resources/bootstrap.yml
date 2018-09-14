@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: demo-zuul-server
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 eureka:
   client:
     enabled: true
