@@ -2,7 +2,8 @@ server:
   port: 8888
 spring:
   application:
-    name: service-admin-server
+    name: admin
+
 eureka:
   client:
     enabled: true
@@ -15,7 +16,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"  #<2>
+        include: "*"
   endpoint:
     health:
       show-details: ALWAYS

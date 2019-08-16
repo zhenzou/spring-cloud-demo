@@ -1,8 +1,6 @@
 server:
-  port: 8763
-spring:
-  application:
-    name: demo-eureka-server
+  port: 8762
+
 eureka:
   client:
     enabled: true

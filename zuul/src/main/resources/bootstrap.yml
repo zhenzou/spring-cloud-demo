@@ -5,7 +5,7 @@ server:
     worker-threads: 24
 spring:
   application:
-    name: demo-zuul-server
+    name: zuul
   cloud:
     loadbalancer:
       retry:
@@ -21,10 +21,6 @@ eureka:
 zuul:
   ignored-services: '*'
   retryable: true
-
-
-logging:
-  file: logs/zuul.log
 
 management:
   endpoints:
