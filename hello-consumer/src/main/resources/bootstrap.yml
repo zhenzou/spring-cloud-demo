@@ -15,4 +15,8 @@ eureka:
     service-url:
       defaultZone: http://september:demo@localhost:8761/eureka/
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
