@@ -5,4 +5,5 @@ include 'hello-consumer'
 include 'hello-provider'
 include 'admin'
 include 'demo'
+include 'hystirx-dashboard'
 

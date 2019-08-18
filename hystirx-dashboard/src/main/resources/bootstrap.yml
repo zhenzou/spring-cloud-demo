@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8090
 spring:
   application:
-    name: hello-consumer
+    name: hystrix-dashboard
 
 eureka:
   instance:
     metadata-map:
-      route: hello
+      route: hystrix-dashboard
   client:
     enabled: true
     fetch-registry: true

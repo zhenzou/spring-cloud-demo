@@ -1,13 +1,9 @@
 server:
-  port: 8080
+  port: 8082
 spring:
   application:
-    name: hello-consumer
-
+    name: hello-provider
 eureka:
-  instance:
-    metadata-map:
-      route: hello
   client:
     enabled: true
     fetch-registry: true
