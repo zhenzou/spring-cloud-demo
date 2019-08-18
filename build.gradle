@@ -44,10 +44,7 @@ configure(subprojects, { project ->
         compile.exclude group: 'org.apache.tomcat'
     }
     dependencies {
-        compile('org.springframework.boot:spring-boot-starter-undertow')
         compile('org.springframework.boot:spring-boot-starter-actuator')
-        compile('org.springframework.boot:spring-boot-starter-web')
-        compile('org.springframework.boot:spring-boot-starter-undertow')
         compile('de.codecentric:spring-boot-admin-starter-client')
         compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
         compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')

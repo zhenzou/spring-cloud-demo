@@ -6,4 +6,5 @@ include 'hello-provider'
 include 'admin'
 include 'demo'
 include 'hystirx-dashboard'
+include 'gateway'
 

@@ -7,6 +7,7 @@ repositories {
 
 dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard')
+    compile('org.springframework.boot:spring-boot-starter-undertow')
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
