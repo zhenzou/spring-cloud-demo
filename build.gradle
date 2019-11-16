@@ -1,9 +1,13 @@
 buildscript {
+
     ext {
-        springBootVersion = '2.0.4.RELEASE'
+        springBootVersion = '2.2.1.RELEASE'
     }
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenCentral()
+        mavenLocal()
+
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -11,8 +15,8 @@ buildscript {
 }
 
 ext {
-    springBootAdminVersion = '2.0.2'
-    springCloudVersion = 'Finchley.SR1'
+    springBootAdminVersion = '2.1.6'
+    springCloudVersion = 'Greenwich.SR3'
 }
 
 configure(subprojects, { project ->
@@ -33,6 +37,7 @@ configure(subprojects, { project ->
     }
 
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenCentral()
         mavenLocal()
     }
@@ -53,7 +58,8 @@ configure(subprojects, { project ->
         compile('org.springframework.session:spring-session-core')
         runtime('org.springframework.boot:spring-boot-devtools')
         compileOnly('org.springframework.boot:spring-boot-configuration-processor')
-        compileOnly('org.projectlombok:lombok')
+        compileOnly('org.projectlombok:lombok:1.18.10')
+        annotationProcessor('org.projectlombok:lombok:1.18.10')
         testCompile('junit:junit:4.12')
         testCompile('org.springframework.boot:spring-boot-starter-test')
     }
